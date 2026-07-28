@@ -41,7 +41,7 @@ export default function FacilitiesPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-brand-dark">{f.title}</h3>
+                  <h3 className="text-xl font-semibold text-foreground">{f.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.description}</p>
                 </div>
               </div>
@@ -55,7 +55,7 @@ export default function FacilitiesPage() {
           <div className="grid items-center gap-8 lg:grid-cols-2">
             <div>
               <span className="text-xs font-semibold tracking-wider text-primary uppercase">Student Life</span>
-              <h2 className="mt-2 text-2xl font-bold text-brand-dark sm:text-3xl">Safe Hostel & Campus Environment</h2>
+              <h2 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl">Safe Hostel & Campus Environment</h2>
               <p className="mt-4 leading-relaxed text-muted-foreground">
                 We understand that coming from nearby districts and rural regions requires safe, hygienic living conditions. Our hostels provide 24/7 security, nutritious mess meals, clean drinking water, and quiet study areas.
               </p>

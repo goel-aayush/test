@@ -1,12 +1,14 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { Menu, X, Phone, MessageCircle, HeartPulse } from 'lucide-react'
+import { Menu, X, Phone, MessageCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { site, nav, whatsappLink } from '@/lib/site'
 import { Container } from '@/components/container'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -32,16 +34,26 @@ export function SiteHeader() {
       </div>
 
       <Container className="flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name} home`}>
-          <span className="flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <HeartPulse className="size-6" aria-hidden="true" />
-          </span>
-          <span className="leading-tight">
-            <span className="block text-base font-bold text-brand-dark">{site.shortName}</span>
-            <span className="block text-[11px] text-muted-foreground">
-              Alok Ranjan Paramedical Institute
+        <Link href="/" className="flex items-center gap-3 shrink-0 py-1" aria-label={`${site.name} home`}>
+          <Image
+            src="/icon.svg"
+            alt="Alok Ranjan Paramedical Institute Logo"
+            width={48}
+            height={48}
+            className="size-11 shrink-0 object-contain"
+            priority
+          />
+          <div className="leading-tight">
+            <span className="block text-base font-extrabold tracking-tight text-[#0E4B75] dark:text-[#38BDF8]">
+              Alok Ranjan
             </span>
-          </span>
+            <span className="block text-xs font-bold text-[#EF7218] dark:text-[#F59E0B] whitespace-nowrap">
+              Paramedical Institute
+            </span>
+            <span className="block text-[10px] font-semibold text-[#C0392B] dark:text-[#F87171] whitespace-nowrap">
+              {site.unit}
+            </span>
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
@@ -62,14 +74,15 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <a
             href={whatsappLink(`Hi ${site.shortName}, I want to know about admissions.`)}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-95 sm:inline-flex"
+            className="hidden items-center gap-1.5 whitespace-nowrap rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-95 sm:inline-flex"
           >
-            <MessageCircle className="size-4" aria-hidden="true" />
-            Apply Now
+            <MessageCircle className="size-4 shrink-0" aria-hidden="true" />
+            <span>Apply Now</span>
           </a>
           <button
             type="button"

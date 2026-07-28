@@ -36,7 +36,7 @@ function MessageBlock({
             className="h-full w-full object-cover"
           />
         </div>
-        <p className="mt-3 font-semibold text-brand-dark">{name}</p>
+        <p className="mt-3 font-semibold text-foreground">{name}</p>
         <p className="text-sm text-muted-foreground">{role}</p>
       </div>
       <div className="space-y-4 leading-relaxed text-foreground/90">
@@ -114,7 +114,7 @@ export default function AboutPage() {
               <span className="flex size-11 items-center justify-center rounded-lg bg-secondary text-primary">
                 <c.icon className="size-5" aria-hidden="true" />
               </span>
-              <h3 className="mt-4 font-semibold text-brand-dark">{c.title}</h3>
+              <h3 className="mt-4 font-semibold text-foreground">{c.title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.text}</p>
             </div>
           ))}

@@ -1,5 +1,6 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Phone, MessageCircle, Mail, MapPin, HeartPulse } from 'lucide-react'
+import { Phone, MessageCircle, Mail, MapPin } from 'lucide-react'
 import { site, nav, whatsappLink } from '@/lib/site'
 import { courses } from '@/lib/courses'
 import { Container } from '@/components/container'
@@ -39,11 +40,19 @@ export function SiteFooter() {
 
       <Container className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="flex size-10 items-center justify-center rounded-lg bg-white/10">
-              <HeartPulse className="size-6" aria-hidden="true" />
-            </span>
-            <span className="font-bold">{site.shortName}</span>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/icon.svg"
+              alt="Alok Ranjan Paramedical Institute Logo"
+              width={44}
+              height={44}
+              className="size-11 shrink-0 object-contain"
+            />
+            <div className="leading-tight">
+              <span className="block text-base font-extrabold text-white">Alok Ranjan</span>
+              <span className="block text-xs font-bold text-accent">Paramedical Institute</span>
+              <span className="block text-[10px] font-semibold text-white/80">{site.unit}</span>
+            </div>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/75">
             {site.name} — training the next generation of paramedical professionals in Gaya, Bihar.

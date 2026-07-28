@@ -12,7 +12,7 @@ export function CourseCard({ course }: { course: Course }) {
       <span className="flex size-12 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
         <CourseIcon name={course.icon} />
       </span>
-      <h3 className="mt-4 text-lg font-semibold text-brand-dark">{course.shortName}</h3>
+      <h3 className="mt-4 text-lg font-semibold text-foreground">{course.shortName}</h3>
       <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{course.tagline}</p>
 
       <dl className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-foreground">

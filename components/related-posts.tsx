@@ -19,7 +19,7 @@ export function RelatedPosts({
   return (
     <section aria-labelledby="related-posts-heading" className="mt-10">
       <div className="flex items-center justify-between gap-4">
-        <h2 id="related-posts-heading" className="text-xl font-bold text-brand-dark">
+        <h2 id="related-posts-heading" className="text-xl font-bold text-foreground">
           {heading}
         </h2>
         <Link
@@ -47,7 +47,7 @@ export function RelatedPosts({
             />
             <div className="min-w-0">
               <span className="text-xs font-semibold text-primary">{post.category}</span>
-              <h3 className="mt-1 line-clamp-2 text-sm font-semibold leading-snug text-brand-dark group-hover:text-primary">
+              <h3 className="mt-1 line-clamp-2 text-sm font-semibold leading-snug text-foreground group-hover:text-primary">
                 {post.title}
               </h3>
               <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">

@@ -72,6 +72,40 @@
   --radius: 0.7rem;
 }
 
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.12 0.02 240);
+  --foreground: oklch(0.96 0.005 220);
+
+  --card: oklch(0.17 0.022 240);
+  --card-foreground: oklch(0.96 0.005 220);
+  --popover: oklch(0.17 0.022 240);
+  --popover-foreground: oklch(0.96 0.005 220);
+
+  /* Glowing medical teal for primary buttons & active elements */
+  --primary: oklch(0.60 0.12 213);
+  --primary-foreground: oklch(0.99 0.005 220);
+
+  --brand: oklch(0.60 0.12 213);
+  /* Dark midnight navy for bg-brand-dark sections */
+  --brand-dark: oklch(0.10 0.03 245);
+
+  --secondary: oklch(0.20 0.03 240);
+  --secondary-foreground: oklch(0.92 0.02 214);
+
+  --muted: oklch(0.15 0.02 240);
+  --muted-foreground: oklch(0.72 0.02 230);
+
+  /* Warm amber accent for CTAs */
+  --accent: oklch(0.78 0.16 66);
+  --accent-foreground: oklch(0.18 0.06 60);
+
+  --destructive: oklch(0.65 0.22 27);
+  --border: oklch(0.24 0.02 240);
+  --input: oklch(0.24 0.02 240);
+  --ring: oklch(0.60 0.12 213);
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);

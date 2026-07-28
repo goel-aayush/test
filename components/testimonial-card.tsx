@@ -29,7 +29,7 @@ export function TestimonialCard({ t }: { t: Testimonial }) {
           className="size-11 rounded-full object-cover"
         />
         <div>
-          <p className="text-sm font-semibold text-brand-dark">{t.name}</p>
+          <p className="text-sm font-semibold text-foreground">{t.name}</p>
           <p className="text-xs text-muted-foreground">{t.course}</p>
         </div>
       </figcaption>

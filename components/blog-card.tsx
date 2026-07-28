@@ -20,7 +20,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
         <span className="inline-flex w-fit items-center rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-primary">
           {post.category}
         </span>
-        <h3 className="mt-3 text-lg font-semibold leading-snug text-balance text-brand-dark">
+        <h3 className="mt-3 text-lg font-semibold leading-snug text-balance text-foreground">
           <Link href={`/blog/${post.slug}`} className="hover:text-primary">
             {post.title}
           </Link>

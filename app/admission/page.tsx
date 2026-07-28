@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
-import { Container, Section } from '@/components/container'
+import { Container, Section, SectionHeading } from '@/components/container'
 import { PageHero } from '@/components/page-hero'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { EnquiryForm } from '@/components/enquiry-form'
+import { FAQAccordion } from '@/components/faq-accordion'
+import { FAQSchema } from '@/components/seo/faq-schema'
 import { courses } from '@/lib/courses'
 import { site } from '@/lib/site'
+import { admissionFaqs } from '@/lib/content'
 import { CheckCircle2, FileText, Phone, ClipboardCheck, GraduationCap } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -157,6 +160,20 @@ export default function AdmissionPage() {
           </div>
           <div className="mx-auto mt-8 max-w-2xl">
             <EnquiryForm />
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="bg-muted/40">
+        <Container>
+          <FAQSchema items={admissionFaqs} />
+          <SectionHeading
+            eyebrow="Admission Help"
+            title="Admission FAQs"
+            description="Got questions about applying, documents or batch timing? Here are answers to common admission queries."
+          />
+          <div className="mx-auto mt-8 max-w-3xl">
+            <FAQAccordion items={admissionFaqs} />
           </div>
         </Container>
       </Section>

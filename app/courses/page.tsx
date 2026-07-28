@@ -29,7 +29,7 @@ export default function CoursesPage() {
           </div>
 
           <div className="mt-12 rounded-2xl border border-border bg-secondary p-8 text-center">
-            <h2 className="text-xl font-bold text-brand-dark sm:text-2xl">
+            <h2 className="text-xl font-bold text-foreground sm:text-2xl">
               Not sure which course is right for you?
             </h2>
             <p className="mx-auto mt-2 max-w-xl text-sm text-muted-foreground">

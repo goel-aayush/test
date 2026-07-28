@@ -43,7 +43,7 @@ export function EnquiryForm({ defaultCourse }: { defaultCourse?: string }) {
         <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-secondary text-primary">
           <CheckCircle2 className="size-7" aria-hidden="true" />
         </span>
-        <h3 className="mt-4 text-lg font-semibold text-brand-dark">Thank you for your enquiry!</h3>
+        <h3 className="mt-4 text-lg font-semibold text-foreground">Thank you for your enquiry!</h3>
         <p className="mt-2 text-sm text-muted-foreground">
           Our admission counsellor will contact you within 24 hours. For a faster response, message
           us on WhatsApp.

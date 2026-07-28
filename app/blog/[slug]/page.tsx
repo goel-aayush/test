@@ -163,7 +163,7 @@ export default async function BlogPostPage({
                     <CourseIcon name={relatedCourse.icon} />
                   </span>
                   <div>
-                    <h2 className="text-lg font-bold text-brand-dark">{relatedCourse.name}</h2>
+                    <h2 className="text-lg font-bold text-foreground">{relatedCourse.name}</h2>
                     <p className="mt-1 text-sm text-muted-foreground">{relatedCourse.tagline}</p>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export default async function BlogPostPage({
         <section className="border-t border-border bg-muted py-14">
           <Container>
             <div className="flex items-center justify-between gap-4">
-              <h2 className="text-xl font-bold text-brand-dark">More articles</h2>
+              <h2 className="text-xl font-bold text-foreground">More articles</h2>
               <Link
                 href="/blog"
                 className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"

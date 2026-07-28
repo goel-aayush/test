@@ -145,3 +145,55 @@ export const gallery = [
   { src: '/images/facility-hostel.png', alt: 'Student hostel accommodation' },
   { src: '/images/facility-transport.png', alt: 'Institute transport bus service' },
 ]
+
+export const homeFaqs = [
+  {
+    question: 'What paramedical courses are offered at ARPI Gaya?',
+    answer:
+      'ARPI offers 6 job-oriented diploma and certificate courses: DMLT (Medical Lab Technician), Certificate in Medical Dresser, OT Assistant, X-Ray / Radiology Technician, Diploma in Physiotherapy, and Health Sanitary Inspector (HSI).',
+  },
+  {
+    question: 'What is the eligibility criteria for paramedical admission?',
+    answer:
+      'For 2-year diploma courses (DMLT, X-Ray Technician, OT Assistant, Physiotherapy), candidates should have passed 10+2 with Science (PCB/PCM). For 1-year certificate courses like Medical Dresser, 10th pass candidates are eligible.',
+  },
+  {
+    question: 'Are ARPI courses recognized for government and private hospital jobs in Bihar?',
+    answer:
+      'Yes, our curriculum is aligned with standard paramedical council norms and emphasizes practical, hands-on training required by state health departments, private hospitals, and diagnostic centers.',
+  },
+  {
+    question: 'Does ARPI provide hostel and transport facilities for outstation students?',
+    answer:
+      'Yes! We provide safe, affordable hostel accommodation with warden supervision and mess facilities, along with institute bus transport covering major routes across Gaya.',
+  },
+  {
+    question: 'What is the starting salary range for paramedical graduates in Bihar?',
+    answer:
+      'Fresh graduates typically earn between ₹12,000 and ₹25,000 per month depending on their specialization, lab skills, and employer type. Government jobs and experienced roles offer higher pay scales.',
+  },
+]
+
+export const admissionFaqs = [
+  {
+    question: 'How can I apply for admission at ARPI Gaya?',
+    answer:
+      'You can apply by filling out the online enquiry form on our website, calling our admission helpline (+91 94312 24000), or visiting our Gaya campus directly for counselling.',
+  },
+  {
+    question: 'What documents are required during admission?',
+    answer:
+      'You need 10th & 12th marksheets/certificates, School/College Leaving Certificate (SLC/CLC), Aadhaar card copy, 4 passport-size photographs, and Caste/Income certificate if applying for scholarship.',
+  },
+  {
+    question: 'Is there an entrance examination for admission?',
+    answer:
+      'Admissions are granted primarily based on academic eligibility and seat availability in your chosen batch. Early enquiry is recommended as batch seats are limited.',
+  },
+  {
+    question: 'Are scholarships or fee installment options available?',
+    answer:
+      'Yes, merit-based concessions, category scholarships (SC/ST/OBC), and flexible semester fee payment plans are available to support eligible students.',
+  },
+]
+

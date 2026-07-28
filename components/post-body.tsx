@@ -7,7 +7,7 @@ export function PostBody({ blocks }: { blocks: ContentBlock[] }) {
       {blocks.map((block, i) => {
         if (block.type === 'heading') {
           return (
-            <h2 key={i} className="text-xl font-bold text-brand-dark sm:text-2xl">
+            <h2 key={i} className="text-xl font-bold text-foreground sm:text-2xl">
               {block.text}
             </h2>
           )

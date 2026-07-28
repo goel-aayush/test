@@ -53,7 +53,7 @@ export default function ScholarshipPage() {
                 <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <scheme.icon className="size-6" />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-brand-dark">{scheme.title}</h3>
+                <h3 className="mb-2 text-lg font-semibold text-foreground">{scheme.title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{scheme.description}</p>
               </div>
             ))}
@@ -65,7 +65,7 @@ export default function ScholarshipPage() {
         <Container>
           <div className="grid gap-10 lg:grid-cols-2">
             <div>
-              <h2 className="text-2xl font-bold text-brand-dark sm:text-3xl">How to Apply for Scholarship</h2>
+              <h2 className="text-2xl font-bold text-foreground sm:text-3xl">How to Apply for Scholarship</h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">
                 Follow these simple steps during your admission process to claim eligible concessions:
               </p>
@@ -88,7 +88,7 @@ export default function ScholarshipPage() {
             </div>
 
             <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-xs">
-              <h3 className="text-xl font-bold text-brand-dark">Apply for Scholarship Guidance</h3>
+              <h3 className="text-xl font-bold text-foreground">Apply for Scholarship Guidance</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 Fill in your details and our admission officer will call you back with scholarship eligibility details.
               </p>

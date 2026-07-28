@@ -63,7 +63,7 @@ export function HomeHero() {
           </div>
           <div className="absolute -bottom-4 left-4 right-4 rounded-xl border border-border bg-card p-4 text-foreground shadow-lg sm:left-6 sm:right-auto sm:w-64">
             <p className="text-xs font-medium text-muted-foreground">Admissions 2026–27</p>
-            <p className="mt-1 text-sm font-semibold text-brand-dark">
+            <p className="mt-1 text-sm font-semibold text-foreground">
               Limited seats open. Enquire today.
             </p>
             <a

@@ -1,6 +1,7 @@
 export const site = {
   name: 'Alok Ranjan Paramedical Institute',
   shortName: 'ARPI',
+  unit: 'A unit of Digmani Education',
   established: '2021',
   tagline: 'Building healthcare careers in Gaya, Bihar',
   phone: '+91 90000 00000',

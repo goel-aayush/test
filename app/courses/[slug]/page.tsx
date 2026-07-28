@@ -121,7 +121,7 @@ export default async function CourseDetailPage({
               <span className="flex size-12 items-center justify-center rounded-lg bg-secondary text-primary">
                 <CourseIcon name={course.icon} />
               </span>
-              <h2 className="text-xl font-bold text-brand-dark">Course Overview</h2>
+              <h2 className="text-xl font-bold text-foreground">Course Overview</h2>
             </div>
             <p className="mt-4 leading-relaxed text-foreground/90">{course.overview}</p>
 
@@ -137,7 +137,7 @@ export default async function CourseDetailPage({
                   </span>
                   <div>
                     <dt className="text-xs text-muted-foreground">{f.label}</dt>
-                    <dd className="text-sm font-semibold text-brand-dark">{f.value}</dd>
+                    <dd className="text-sm font-semibold text-foreground">{f.value}</dd>
                   </div>
                 </div>
               ))}
@@ -145,7 +145,7 @@ export default async function CourseDetailPage({
 
             {/* Curriculum */}
             <div className="mt-10">
-              <h2 className="text-xl font-bold text-brand-dark">Curriculum &amp; Subjects</h2>
+              <h2 className="text-xl font-bold text-foreground">Curriculum &amp; Subjects</h2>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {course.subjects.map((s) => (
                   <li key={s} className="flex items-start gap-2.5 text-sm text-foreground/90">
@@ -163,7 +163,7 @@ export default async function CourseDetailPage({
             <div className="mt-8 flex items-start gap-3 rounded-xl border border-primary/20 bg-secondary p-5">
               <BadgeCheck className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
               <div>
-                <p className="text-sm font-semibold text-brand-dark">Recognition</p>
+                <p className="text-sm font-semibold text-foreground">Recognition</p>
                 <p className="mt-0.5 text-sm text-muted-foreground">{course.recognition}</p>
               </div>
             </div>
@@ -198,7 +198,7 @@ export default async function CourseDetailPage({
       {/* Related courses */}
       <section className="border-t border-border bg-muted py-14">
         <Container>
-          <h2 className="text-xl font-bold text-brand-dark">Related courses</h2>
+          <h2 className="text-xl font-bold text-foreground">Related courses</h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-3">
             {related.map((c) => (
               <Link
@@ -211,7 +211,7 @@ export default async function CourseDetailPage({
                     <CourseIcon name={c.icon} className="size-5" />
                   </span>
                   <span>
-                    <span className="block text-sm font-semibold text-brand-dark">
+                    <span className="block text-sm font-semibold text-foreground">
                       {c.shortName}
                     </span>
                     <span className="block text-xs text-muted-foreground">{c.duration}</span>

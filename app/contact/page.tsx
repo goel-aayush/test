@@ -26,7 +26,7 @@ export default function ContactPage() {
           <div className="grid gap-10 lg:grid-cols-2">
             <div>
               <span className="text-xs font-semibold tracking-wider text-primary uppercase">Get In Touch</span>
-              <h2 className="mt-1 text-2xl font-bold text-brand-dark sm:text-3xl">We are here to help you</h2>
+              <h2 className="mt-1 text-2xl font-bold text-foreground sm:text-3xl">We are here to help you</h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">
                 Visit our campus in Gaya during working hours or connect with us via phone, email or WhatsApp.
               </p>
@@ -104,7 +104,7 @@ export default function ContactPage() {
             </div>
 
             <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-xs">
-              <h2 className="text-xl font-bold text-brand-dark">Send an Enquiry</h2>
+              <h2 className="text-xl font-bold text-foreground">Send an Enquiry</h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 Fill out this form and our admission counsellor will respond within 24 hours.
               </p>
@@ -120,7 +120,7 @@ export default function ContactPage() {
         <Container>
           <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-xs">
             <div className="p-4 bg-muted border-b border-border">
-              <h3 className="font-semibold text-brand-dark flex items-center gap-2">
+              <h3 className="font-semibold text-foreground flex items-center gap-2">
                 <MapPin className="size-4 text-primary" />
                 Location Map – Gaya Campus
               </h3>

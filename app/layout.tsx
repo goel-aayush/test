@@ -6,6 +6,7 @@ import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { MobileCtaBar } from '@/components/mobile-cta-bar'
 import { OrganizationSchema } from '@/components/seo/organization-schema'
+import { ThemeProvider, themeScript } from '@/components/theme-provider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -58,6 +59,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    apple: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'Alok Ranjan Paramedical Institute (ARPI) | Gaya, Bihar',
@@ -68,7 +73,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light',
+  colorScheme: 'light dark',
   themeColor: '#0F7A8C',
   width: 'device-width',
   initialScale: 1,
@@ -80,14 +85,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} bg-background`}>
-      <body className="font-sans antialiased">
-        <OrganizationSchema />
-        <SiteHeader />
-        <main className="min-h-screen pb-16 md:pb-0">{children}</main>
-        <SiteFooter />
-        <MobileCtaBar />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable} bg-background`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="font-sans antialiased text-foreground bg-background">
+        <ThemeProvider>
+          <OrganizationSchema />
+          <SiteHeader />
+          <main className="min-h-screen pb-16 md:pb-0">{children}</main>
+          <SiteFooter />
+          <MobileCtaBar />
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </ThemeProvider>
       </body>
     </html>
   )

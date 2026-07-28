@@ -83,7 +83,7 @@ export default function AcademicsPage() {
             <div className="divide-y divide-border">
               {academicCalendar.map((item) => (
                 <div key={item.term} className="grid p-4 sm:grid-cols-[200px_160px_1fr] sm:p-5 items-center gap-3">
-                  <div className="font-semibold text-brand-dark">{item.term}</div>
+                  <div className="font-semibold text-foreground">{item.term}</div>
                   <div className="text-sm font-medium text-primary">{item.period}</div>
                   <div className="text-sm text-muted-foreground">{item.details}</div>
                 </div>
@@ -104,7 +104,7 @@ export default function AcademicsPage() {
               <CtaButton href="/admission" variant="accent">
                 Apply for Admission
               </CtaButton>
-              <CtaButton href="/contact" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+              <CtaButton href="/contact" variant="ghost-light">
                 Contact Academic Cell
               </CtaButton>
             </div>

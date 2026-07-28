@@ -18,8 +18,10 @@ import { CourseCard } from '@/components/course-card'
 import { StatCard } from '@/components/stat-card'
 import { TestimonialCard } from '@/components/testimonial-card'
 import { CtaButton } from '@/components/cta-button'
+import { FAQAccordion } from '@/components/faq-accordion'
+import { FAQSchema } from '@/components/seo/faq-schema'
 import { courses } from '@/lib/courses'
-import { testimonials, stats } from '@/lib/content'
+import { testimonials, stats, homeFaqs } from '@/lib/content'
 
 const statIcons: Record<string, LucideIcon> = {
   CalendarDays,
@@ -182,6 +184,21 @@ export default function HomePage() {
             {testimonials.map((t) => (
               <TestimonialCard key={t.name} t={t} />
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="bg-muted/40 py-14 sm:py-20">
+        <Container>
+          <FAQSchema items={homeFaqs} />
+          <SectionHeading
+            eyebrow="Frequently Asked Questions"
+            title="Everything You Need to Know"
+            description="Clear answers to common questions about courses, eligibility, recognition, and campus life at ARPI Gaya."
+          />
+          <div className="mx-auto mt-10 max-w-3xl">
+            <FAQAccordion items={homeFaqs} />
           </div>
         </Container>
       </section>

@@ -14,7 +14,7 @@ export function StatCard({
       <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-secondary text-primary">
         <Icon className="size-6" aria-hidden="true" />
       </span>
-      <p className="mt-3 text-3xl font-bold text-brand-dark">{value}</p>
+      <p className="mt-3 text-3xl font-bold text-foreground">{value}</p>
       <p className="mt-1 text-sm text-muted-foreground">{label}</p>
     </div>
   )

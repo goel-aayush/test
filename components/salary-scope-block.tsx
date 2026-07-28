@@ -7,7 +7,7 @@ export function SalaryScopeBlock({ course }: { course: Course }) {
 
   return (
     <section aria-labelledby="salary-scope-heading" className="mt-10">
-      <h2 id="salary-scope-heading" className="text-xl font-bold text-brand-dark">
+      <h2 id="salary-scope-heading" className="text-xl font-bold text-foreground">
         Salary &amp; Career Scope
       </h2>
 
@@ -22,7 +22,7 @@ export function SalaryScopeBlock({ course }: { course: Course }) {
               <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Estimated starting salary
               </p>
-              <p className="text-2xl font-bold text-brand-dark">
+              <p className="text-2xl font-bold text-foreground">
                 {formatSalaryRange(salaryRange)}
               </p>
             </div>
@@ -39,7 +39,7 @@ export function SalaryScopeBlock({ course }: { course: Course }) {
         <div className="rounded-xl border border-border bg-card p-5">
           <div className="flex items-center gap-2">
             <Briefcase className="size-4 text-primary" aria-hidden="true" />
-            <h3 className="text-sm font-semibold text-brand-dark">Job roles you qualify for</h3>
+            <h3 className="text-sm font-semibold text-foreground">Job roles you qualify for</h3>
           </div>
           <ul className="mt-3 space-y-2">
             {careerScope.roles.map((role) => (
@@ -54,7 +54,7 @@ export function SalaryScopeBlock({ course }: { course: Course }) {
         <div className="rounded-xl border border-border bg-card p-5">
           <div className="flex items-center gap-2">
             <Building2 className="size-4 text-primary" aria-hidden="true" />
-            <h3 className="text-sm font-semibold text-brand-dark">Where graduates get hired</h3>
+            <h3 className="text-sm font-semibold text-foreground">Where graduates get hired</h3>
           </div>
           <ul className="mt-3 space-y-2">
             {careerScope.employers.map((employer) => (
@@ -70,7 +70,7 @@ export function SalaryScopeBlock({ course }: { course: Course }) {
       <div className="mt-5 flex items-start gap-3 rounded-xl border border-border bg-muted p-5">
         <TrendingUp className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
         <div>
-          <h3 className="text-sm font-semibold text-brand-dark">Growth path</h3>
+          <h3 className="text-sm font-semibold text-foreground">Growth path</h3>
           <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
             {careerScope.growthPath}
           </p>

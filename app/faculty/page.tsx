@@ -31,7 +31,7 @@ export default function FacultyPage() {
                 />
               </div>
               <div className="p-5">
-                <h3 className="font-semibold text-brand-dark text-lg">{member.name}</h3>
+                <h3 className="font-semibold text-foreground text-lg">{member.name}</h3>
                 <p className="text-sm font-medium text-primary mt-0.5">{member.role}</p>
                 <p className="mt-2 text-xs text-muted-foreground leading-relaxed flex items-start gap-1.5">
                   <GraduationCap className="size-4 shrink-0 text-muted-foreground/70" />
@@ -54,7 +54,7 @@ export default function FacultyPage() {
                 <UserCheck className="size-5" />
               </div>
               <div>
-                <h4 className="font-semibold text-brand-dark">{staff.name}</h4>
+                <h4 className="font-semibold text-foreground">{staff.name}</h4>
                 <p className="text-xs text-muted-foreground">{staff.role}</p>
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function FacultyPage() {
         <Container>
           <div className="mb-10 max-w-2xl">
             <span className="text-xs font-semibold tracking-wider text-primary uppercase">Experienced Educators</span>
-            <h2 className="mt-1 text-2xl font-bold text-brand-dark sm:text-3xl">Learn from Healthcare Professionals</h2>
+            <h2 className="mt-1 text-2xl font-bold text-foreground sm:text-3xl">Learn from Healthcare Professionals</h2>
             <p className="mt-3 text-muted-foreground leading-relaxed">
               Our faculty members bring decades of clinical and academic experience, ensuring students receive practical insights beyond textbook theory.
             </p>
