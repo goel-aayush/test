@@ -37,6 +37,11 @@ export const metadata: Metadata = {
   ],
   generator: 'v0.app',
   alternates: { canonical: '/' },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
@@ -44,6 +49,21 @@ export const metadata: Metadata = {
     title: 'Alok Ranjan Paramedical Institute (ARPI) | Gaya, Bihar',
     description:
       'Build a healthcare career with government-aligned paramedical diploma and certificate courses in Gaya, Bihar.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Alok Ranjan Paramedical Institute (ARPI), Gaya, Bihar',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Alok Ranjan Paramedical Institute (ARPI) | Gaya, Bihar',
+    description:
+      'Build a healthcare career with government-aligned paramedical diploma and certificate courses in Gaya, Bihar.',
+    images: ['/og-image.png'],
   },
 }
 

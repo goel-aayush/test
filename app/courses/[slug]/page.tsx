@@ -36,7 +36,11 @@ export async function generateMetadata({
     title,
     description: `${course.name} at ARPI Gaya — ${course.duration}, eligibility: ${course.eligibility}. ${course.tagline} Apply for admission.`,
     alternates: { canonical: `/courses/${course.slug}` },
-    openGraph: { title, description: course.tagline },
+    openGraph: {
+      title,
+      description: course.tagline,
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: title }],
+    },
   }
 }
 
@@ -60,9 +64,32 @@ export default async function CourseDetailPage({
       '@type': 'EducationalOrganization',
       name: site.name,
       sameAs: 'https://alokranjanparamedicalinstitute.in',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: site.address.line1,
+        addressLocality: site.address.city,
+        addressRegion: site.address.state,
+        postalCode: site.address.postalCode,
+        addressCountry: site.address.country,
+      },
     },
     educationalCredentialAwarded: course.name,
     timeRequired: course.duration,
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: 'onsite',
+      location: {
+        '@type': 'Place',
+        name: site.name,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: site.address.city,
+          addressRegion: site.address.state,
+          postalCode: site.address.postalCode,
+          addressCountry: site.address.country,
+        },
+      },
+    },
   }
 
   const quickFacts = [
