@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { courses } from '@/lib/courses'
+import { posts } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://alokranjanparamedicalinstitute.in'
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/facilities',
     '/gallery',
     '/scholarship',
+    '/blog',
     '/contact',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
@@ -29,5 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }))
 
-  return [...staticRoutes, ...courseRoutes]
+  const blogRoutes = posts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.publishDate),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  return [...staticRoutes, ...courseRoutes, ...blogRoutes]
 }
