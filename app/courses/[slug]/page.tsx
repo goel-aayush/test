@@ -8,7 +8,6 @@ import {
   Users,
   BadgeCheck,
   CheckCircle2,
-  Briefcase,
   ArrowRight,
 } from 'lucide-react'
 import { Container } from '@/components/container'
@@ -16,7 +15,10 @@ import { PageHero } from '@/components/page-hero'
 import { CourseIcon } from '@/components/course-icon'
 import { CtaButton } from '@/components/cta-button'
 import { EnquiryForm } from '@/components/enquiry-form'
+import { SalaryScopeBlock } from '@/components/salary-scope-block'
+import { RelatedPosts } from '@/components/related-posts'
 import { courses, getCourse } from '@/lib/courses'
+import { getPostsByCourse } from '@/lib/blog'
 import { site } from '@/lib/site'
 
 export function generateStaticParams() {
@@ -36,7 +38,11 @@ export async function generateMetadata({
     title,
     description: `${course.name} at ARPI Gaya — ${course.duration}, eligibility: ${course.eligibility}. ${course.tagline} Apply for admission.`,
     alternates: { canonical: `/courses/${course.slug}` },
-    openGraph: { title, description: course.tagline },
+    openGraph: {
+      title,
+      description: course.tagline,
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: title }],
+    },
   }
 }
 
@@ -50,6 +56,7 @@ export default async function CourseDetailPage({
   if (!course) notFound()
 
   const related = courses.filter((c) => c.slug !== course.slug).slice(0, 3)
+  const relatedPosts = getPostsByCourse(course.slug)
 
   const courseSchema = {
     '@context': 'https://schema.org',
@@ -60,9 +67,32 @@ export default async function CourseDetailPage({
       '@type': 'EducationalOrganization',
       name: site.name,
       sameAs: 'https://alokranjanparamedicalinstitute.in',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: site.address.line1,
+        addressLocality: site.address.city,
+        addressRegion: site.address.state,
+        postalCode: site.address.postalCode,
+        addressCountry: site.address.country,
+      },
     },
     educationalCredentialAwarded: course.name,
     timeRequired: course.duration,
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: 'onsite',
+      location: {
+        '@type': 'Place',
+        name: site.name,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: site.address.city,
+          addressRegion: site.address.state,
+          postalCode: site.address.postalCode,
+          addressCountry: site.address.country,
+        },
+      },
+    },
   }
 
   const quickFacts = [
@@ -126,21 +156,8 @@ export default async function CourseDetailPage({
               </ul>
             </div>
 
-            {/* Careers */}
-            <div className="mt-10">
-              <h2 className="text-xl font-bold text-brand-dark">Career Scope &amp; Job Roles</h2>
-              <div className="mt-4 flex flex-wrap gap-2.5">
-                {course.careers.map((c) => (
-                  <span
-                    key={c}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3.5 py-1.5 text-sm text-foreground/90"
-                  >
-                    <Briefcase className="size-3.5 text-primary" aria-hidden="true" />
-                    {c}
-                  </span>
-                ))}
-              </div>
-            </div>
+            {/* Salary & career scope */}
+            <SalaryScopeBlock course={course} />
 
             {/* Recognition */}
             <div className="mt-8 flex items-start gap-3 rounded-xl border border-primary/20 bg-secondary p-5">
@@ -150,6 +167,9 @@ export default async function CourseDetailPage({
                 <p className="mt-0.5 text-sm text-muted-foreground">{course.recognition}</p>
               </div>
             </div>
+
+            {/* Related blog posts — the course -> blog half of the cross-link */}
+            <RelatedPosts posts={relatedPosts} heading="Read more about this career" />
           </div>
 
           {/* Sidebar */}

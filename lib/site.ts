@@ -43,5 +43,6 @@ export const nav = [
   { label: 'Facilities', href: '/facilities' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Scholarship', href: '/scholarship' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ]

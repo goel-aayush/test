@@ -1,3 +1,15 @@
+export type CareerScope = {
+  roles: string[] // job titles this course qualifies for
+  employers: string[] // where graduates typically get hired
+  growthPath: string // further study / promotion path
+}
+
+export type SalaryRange = {
+  min: number // monthly starting salary (INR) — lower bound for freshers
+  max: number // monthly starting salary (INR) — upper bound for freshers
+  note: string // honest caveat, e.g. varies by location/employer/experience
+}
+
 export type Course = {
   slug: string
   name: string
@@ -13,6 +25,9 @@ export type Course = {
   subjects: string[]
   careers: string[]
   recognition: string
+  // NOTE: Replace with verified institute placement data when available.
+  careerScope: CareerScope
+  salaryRange: SalaryRange
 }
 
 export const courses: Course[] = [
@@ -44,6 +59,29 @@ export const courses: Course[] = [
       'Research Lab Assistant',
     ],
     recognition: 'Curriculum aligned with recognised paramedical council norms.',
+    careerScope: {
+      roles: [
+        'Hospital Lab Technician',
+        'Pathology Lab Assistant',
+        'Blood Bank Technician',
+        'Diagnostic Centre Technician',
+        'Sample Collection Technician (Phlebotomist)',
+      ],
+      employers: [
+        'Government hospitals & PHCs',
+        'Private hospitals and nursing homes',
+        'Diagnostic chains (e.g. path labs & collection centres)',
+        'Research and pharma laboratories',
+        'Railway & defence medical units',
+      ],
+      growthPath:
+        'Progress to a B.Sc in Medical Lab Technology (MLT), then M.Sc or specialised certifications, moving into Senior Lab Technician, Lab Supervisor or Lab In-charge roles.',
+    },
+    salaryRange: {
+      min: 10000,
+      max: 20000,
+      note: 'Typical fresher range per month — varies by location, employer and experience.',
+    },
   },
   {
     slug: 'medical-dresser',
@@ -73,6 +111,29 @@ export const courses: Course[] = [
       'Nursing Support Staff',
     ],
     recognition: 'Short-duration certificate with strong local job demand.',
+    careerScope: {
+      roles: [
+        'Medical Dresser',
+        'OPD / Dressing Room Assistant',
+        'First-Aid Responder',
+        'Clinic Attendant',
+        'Nursing Support Staff',
+      ],
+      employers: [
+        'Government hospitals & health centres',
+        'Private clinics and nursing homes',
+        'Industrial & factory first-aid rooms',
+        'Polyclinics and OPDs',
+        'NGO and camp health programmes',
+      ],
+      growthPath:
+        'Use this as an entry point into healthcare — gain experience, then upgrade to a DMLT, OT Assistant or nursing-support diploma for higher pay and responsibility.',
+    },
+    salaryRange: {
+      min: 8000,
+      max: 15000,
+      note: 'Typical fresher range per month — varies by location, employer and experience.',
+    },
   },
   {
     slug: 'ot-assistant',
@@ -102,6 +163,29 @@ export const courses: Course[] = [
       'Hospital Theatre Staff',
     ],
     recognition: 'Practical training in a simulated operation-theatre setup.',
+    careerScope: {
+      roles: [
+        'Operation Theatre (OT) Technician',
+        'Surgical Assistant',
+        'CSSD (Sterilisation) Technician',
+        'Anaesthesia Support Technician',
+        'Hospital Theatre Staff',
+      ],
+      employers: [
+        'Government & district hospitals',
+        'Private multi-speciality hospitals',
+        'Surgical & maternity nursing homes',
+        'Day-care surgery and eye-care centres',
+        'Railway & defence medical units',
+      ],
+      growthPath:
+        'Advance to a B.Sc in OT Technology or Anaesthesia Technology, then to Senior OT Technician, CSSD In-charge or OT Supervisor positions.',
+    },
+    salaryRange: {
+      min: 12000,
+      max: 22000,
+      note: 'Typical fresher range per month — varies by location, employer and experience.',
+    },
   },
   {
     slug: 'x-ray-technician',
@@ -131,6 +215,29 @@ export const courses: Course[] = [
       'Ultrasound Assistant',
     ],
     recognition: 'Includes radiation-safety oriented practical modules.',
+    careerScope: {
+      roles: [
+        'X-Ray / Radiology Technician',
+        'CT / MRI Assistant',
+        'Ultrasound (Sonography) Assistant',
+        'Imaging Centre Technician',
+        'Radiographer',
+      ],
+      employers: [
+        'Government hospitals & medical colleges',
+        'Private hospitals and diagnostic imaging centres',
+        'Radiology & scan chains',
+        'Mobile imaging and health-camp units',
+        'Railway & defence medical units',
+      ],
+      growthPath:
+        'Upgrade to a B.Sc in Radiography / Medical Imaging Technology, then specialise in CT, MRI or interventional radiology and move into Senior Technologist or Radiology In-charge roles.',
+    },
+    salaryRange: {
+      min: 12000,
+      max: 25000,
+      note: 'Typical fresher range per month — varies by location, employer and experience.',
+    },
   },
   {
     slug: 'physiotherapy',
@@ -160,6 +267,29 @@ export const courses: Course[] = [
       'Home-Care Physio Aide',
     ],
     recognition: 'Clinical rotation-based practical training.',
+    careerScope: {
+      roles: [
+        'Physiotherapy Assistant',
+        'Rehabilitation Technician',
+        'Sports Recovery Assistant',
+        'Home-Care Physio Aide',
+        'Clinic Physio Support Staff',
+      ],
+      employers: [
+        'Hospitals with rehabilitation departments',
+        'Physiotherapy & orthopaedic clinics',
+        'Sports academies and fitness centres',
+        'Old-age care and rehab homes',
+        'Home-care and community health services',
+      ],
+      growthPath:
+        'Progress to a Bachelor of Physiotherapy (BPT) for licensed practitioner status, then to specialisations in ortho, neuro or sports physiotherapy and independent practice.',
+    },
+    salaryRange: {
+      min: 10000,
+      max: 20000,
+      note: 'Typical fresher range per month — varies by location, employer and experience.',
+    },
   },
   {
     slug: 'health-sanitary-inspector',
@@ -189,9 +319,42 @@ export const courses: Course[] = [
       'NGO Health Coordinator',
     ],
     recognition: 'Field-oriented public-health training.',
+    careerScope: {
+      roles: [
+        'Health Sanitary Inspector',
+        'Public Health Worker',
+        'Sanitation Supervisor',
+        'Food Safety Assistant',
+        'NGO Health Coordinator',
+      ],
+      employers: [
+        'Municipal corporations & panchayats',
+        'State health & sanitation departments',
+        'Water supply and food-safety authorities',
+        'Hospitals (infection-control units)',
+        'NGOs and public-health programmes',
+      ],
+      growthPath:
+        'Strong pathway to government roles — with experience and departmental exams, progress to Senior Sanitary Inspector, Health Supervisor or Public Health Officer positions.',
+    },
+    salaryRange: {
+      min: 12000,
+      max: 25000,
+      note: 'Typical fresher range per month — government roles and experience raise this significantly.',
+    },
   },
 ]
 
 export function getCourse(slug: string) {
   return courses.find((c) => c.slug === slug)
+}
+
+/** Formats an INR amount compactly, e.g. 10000 -> "₹10,000". */
+export function formatInr(amount: number) {
+  return `₹${amount.toLocaleString('en-IN')}`
+}
+
+/** Formats a salary range as a monthly string, e.g. "₹10,000–₹20,000/month". */
+export function formatSalaryRange(range: SalaryRange) {
+  return `${formatInr(range.min)}–${formatInr(range.max)}/month`
 }
