@@ -8,14 +8,20 @@ import { CourseIcon } from '@/components/course-icon'
 import { CtaButton } from '@/components/cta-button'
 import { PostBody } from '@/components/post-body'
 import { BlogCard } from '@/components/blog-card'
-import { getPost, getAllPosts, formatPostDate } from '@/lib/blog'
-import { getCourse } from '@/lib/courses'
+import { getPost as getFallbackPost, getAllPosts as getFallbackAllPosts, formatPostDate, BlogPost } from '@/lib/blog'
+import { getCourse as getFallbackCourse } from '@/lib/courses'
 import { site } from '@/lib/site'
+import { getBlogsFromAPI, getBlogBySlugFromAPI, getCoursesFromAPI } from '@/lib/api'
 
 const SITE_URL = 'https://alokranjanparamedicalinstitute.in'
 
-export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }))
+export async function generateStaticParams() {
+  let list = getFallbackAllPosts();
+  try {
+    const apiBlogs = await getBlogsFromAPI();
+    if (apiBlogs && apiBlogs.length > 0) list = apiBlogs;
+  } catch (e) {}
+  return list.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -24,7 +30,12 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const post = getPost(slug)
+  let post: BlogPost | null = getFallbackPost(slug) || null;
+  try {
+    const apiPost = await getBlogBySlugFromAPI(slug);
+    if (apiPost) post = apiPost;
+  } catch (e) {}
+
   if (!post) return {}
   return {
     title: post.title,
@@ -34,7 +45,7 @@ export async function generateMetadata({
       type: 'article',
       title: post.title,
       description: post.excerpt,
-      publishedTime: post.publishDate,
+      publishedTime: new Date(post.publishDate).toISOString(),
       authors: [post.author],
       images: [{ url: post.featuredImage, width: 1200, height: 630, alt: post.title }],
     },
@@ -53,13 +64,26 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const post = getPost(slug)
+  let post: BlogPost | null = getFallbackPost(slug) || null;
+  let allPosts = getFallbackAllPosts();
+  let allCourses = [];
+
+  try {
+    const apiPost = await getBlogBySlugFromAPI(slug);
+    if (apiPost) post = apiPost;
+    const apiBlogs = await getBlogsFromAPI();
+    if (apiBlogs && apiBlogs.length > 0) allPosts = apiBlogs;
+    allCourses = await getCoursesFromAPI();
+  } catch (e) {}
+
   if (!post) notFound()
 
-  const relatedCourse = post.relatedCourseSlug ? getCourse(post.relatedCourseSlug) : undefined
+  const relatedCourse = post.relatedCourseSlug 
+    ? (allCourses.find((c: any) => c.slug === post.relatedCourseSlug) || getFallbackCourse(post.relatedCourseSlug)) 
+    : undefined;
 
   // More posts: prefer same category, then fill with recent, excluding current.
-  const morePosts = getAllPosts()
+  const morePosts = allPosts
     .filter((p) => p.slug !== post.slug)
     .sort((a, b) => {
       const aSame = a.category === post.category ? 0 : 1
@@ -129,7 +153,7 @@ export default async function BlogPostPage({
             </span>
             <span className="flex items-center gap-1.5">
               <Clock className="size-4 text-accent" aria-hidden="true" />
-              {post.readingTime} min read
+              {post.readingTime || 3} min read
             </span>
           </div>
         </Container>

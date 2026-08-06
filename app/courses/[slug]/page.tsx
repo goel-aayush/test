@@ -17,12 +17,18 @@ import { CtaButton } from '@/components/cta-button'
 import { EnquiryForm } from '@/components/enquiry-form'
 import { SalaryScopeBlock } from '@/components/salary-scope-block'
 import { RelatedPosts } from '@/components/related-posts'
-import { courses, getCourse } from '@/lib/courses'
+import { courses as fallbackCourses, getCourse as getFallbackCourse, Course } from '@/lib/courses'
 import { getPostsByCourse } from '@/lib/blog'
 import { site } from '@/lib/site'
+import { getCoursesFromAPI, getCourseBySlugFromAPI } from '@/lib/api'
 
-export function generateStaticParams() {
-  return courses.map((c) => ({ slug: c.slug }))
+export async function generateStaticParams() {
+  let list = fallbackCourses;
+  try {
+    const apiCourses = await getCoursesFromAPI();
+    if (apiCourses && apiCourses.length > 0) list = apiCourses;
+  } catch (e) {}
+  return list.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
@@ -31,7 +37,12 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const course = getCourse(slug)
+  let course: Course | null = getFallbackCourse(slug) || null;
+  try {
+    const apiCourse = await getCourseBySlugFromAPI(slug);
+    if (apiCourse) course = apiCourse;
+  } catch (e) {}
+
   if (!course) return {}
   const title = `${course.name} in Gaya, Bihar`
   return {
@@ -52,10 +63,19 @@ export default async function CourseDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const course = getCourse(slug)
+  let course: Course | null = getFallbackCourse(slug) || null;
+  let allCourses = fallbackCourses;
+
+  try {
+    const apiCourse = await getCourseBySlugFromAPI(slug);
+    if (apiCourse) course = apiCourse;
+    const apiCourses = await getCoursesFromAPI();
+    if (apiCourses && apiCourses.length > 0) allCourses = apiCourses;
+  } catch (e) {}
+
   if (!course) notFound()
 
-  const related = courses.filter((c) => c.slug !== course.slug).slice(0, 3)
+  const related = allCourses.filter((c) => c.slug !== course.slug).slice(0, 3)
   const relatedPosts = getPostsByCourse(course.slug)
 
   const courseSchema = {
@@ -144,17 +164,19 @@ export default async function CourseDetailPage({
             </dl>
 
             {/* Curriculum */}
-            <div className="mt-10">
-              <h2 className="text-xl font-bold text-foreground">Curriculum &amp; Subjects</h2>
-              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {course.subjects.map((s) => (
-                  <li key={s} className="flex items-start gap-2.5 text-sm text-foreground/90">
-                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {course.subjects && course.subjects.length > 0 && (
+              <div className="mt-10">
+                <h2 className="text-xl font-bold text-foreground">Curriculum &amp; Subjects</h2>
+                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {course.subjects.map((s) => (
+                    <li key={s} className="flex items-start gap-2.5 text-sm text-foreground/90">
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Salary & career scope */}
             <SalaryScopeBlock course={course} />
@@ -168,7 +190,7 @@ export default async function CourseDetailPage({
               </div>
             </div>
 
-            {/* Related blog posts — the course -> blog half of the cross-link */}
+            {/* Related blog posts */}
             <RelatedPosts posts={relatedPosts} heading="Read more about this career" />
           </div>
 
