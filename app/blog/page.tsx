@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Container } from '@/components/container'
 import { PageHero } from '@/components/page-hero'
 import { BlogList } from '@/components/blog-list'
-import { getAllPosts } from '@/lib/blog'
+import { getAllPosts as getFallbackPosts, BlogPost } from '@/lib/blog'
+import { getBlogsFromAPI } from '@/lib/api'
 
 export const metadata: Metadata = {
   title: 'Blog — Career Guidance & Course Info',
@@ -17,8 +18,14 @@ export const metadata: Metadata = {
   },
 }
 
-export default function BlogPage() {
-  const posts = getAllPosts()
+export default async function BlogPage() {
+  let posts: BlogPost[] = getFallbackPosts();
+  try {
+    const apiBlogs = await getBlogsFromAPI();
+    if (apiBlogs && apiBlogs.length > 0) {
+      posts = apiBlogs;
+    }
+  } catch (err) {}
 
   return (
     <>

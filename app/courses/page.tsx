@@ -3,7 +3,8 @@ import { Container } from '@/components/container'
 import { PageHero } from '@/components/page-hero'
 import { CourseCard } from '@/components/course-card'
 import { CtaButton } from '@/components/cta-button'
-import { courses } from '@/lib/courses'
+import { courses as fallbackCourses, Course } from '@/lib/courses'
+import { getCoursesFromAPI } from '@/lib/api'
 
 export const metadata: Metadata = {
   title: 'Paramedical Courses in Gaya, Bihar',
@@ -12,7 +13,13 @@ export const metadata: Metadata = {
   alternates: { canonical: '/courses' },
 }
 
-export default function CoursesPage() {
+export default async function CoursesPage() {
+  let courseList: Course[] = fallbackCourses;
+  try {
+    const apiCourses = await getCoursesFromAPI();
+    if (apiCourses && apiCourses.length > 0) courseList = apiCourses;
+  } catch (err) {}
+
   return (
     <>
       <PageHero
@@ -23,7 +30,7 @@ export default function CoursesPage() {
       <section className="py-14 sm:py-16">
         <Container>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {courses.map((course) => (
+            {courseList.map((course) => (
               <CourseCard key={course.slug} course={course} />
             ))}
           </div>

@@ -1,8 +1,19 @@
 import { Megaphone } from 'lucide-react'
-import { notices } from '@/lib/content'
+import { notices as fallbackNotices, type Notice } from '@/lib/content'
+import { getNoticesFromAPI } from '@/lib/api'
 import { Container } from '@/components/container'
 
-export function NoticesTicker() {
+export async function NoticesTicker() {
+  let noticeList: Notice[] = fallbackNotices;
+  try {
+    const apiNotices = await getNoticesFromAPI();
+    if (apiNotices && apiNotices.length > 0) {
+      noticeList = apiNotices;
+    }
+  } catch (err) {
+    // fallback
+  }
+
   return (
     <div className="border-y border-border bg-secondary">
       <Container className="flex items-center gap-3 py-2.5">
@@ -12,7 +23,7 @@ export function NoticesTicker() {
         </span>
         <div className="group relative flex-1 overflow-hidden">
           <ul className="flex w-max animate-[marquee_28s_linear_infinite] gap-10 group-hover:[animation-play-state:paused]">
-            {[...notices, ...notices].map((n, i) => (
+            {[...noticeList, ...noticeList].map((n, i) => (
               <li
                 key={i}
                 className="flex items-center gap-2 text-sm whitespace-nowrap text-secondary-foreground"

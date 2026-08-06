@@ -20,8 +20,9 @@ import { TestimonialCard } from '@/components/testimonial-card'
 import { CtaButton } from '@/components/cta-button'
 import { FAQAccordion } from '@/components/faq-accordion'
 import { FAQSchema } from '@/components/seo/faq-schema'
-import { courses } from '@/lib/courses'
-import { testimonials, stats, homeFaqs } from '@/lib/content'
+import { courses as fallbackCourses, Course } from '@/lib/courses'
+import { testimonials as fallbackTestimonials, stats as fallbackStats, homeFaqs as fallbackFaqs } from '@/lib/content'
+import { getCoursesFromAPI, getTestimonialsFromAPI, getFaqsFromAPI, getSettingsFromAPI } from '@/lib/api'
 
 const statIcons: Record<string, LucideIcon> = {
   CalendarDays,
@@ -53,7 +54,30 @@ const steps = [
   },
 ]
 
-export default function HomePage() {
+export default async function HomePage() {
+  let courseList: Course[] = fallbackCourses;
+  let testimonialList = fallbackTestimonials;
+  let faqList = fallbackFaqs;
+  let statsList = fallbackStats;
+
+  try {
+    const apiCourses = await getCoursesFromAPI();
+    if (apiCourses && apiCourses.length > 0) courseList = apiCourses;
+
+    const apiTestimonials = await getTestimonialsFromAPI();
+    if (apiTestimonials && apiTestimonials.length > 0) testimonialList = apiTestimonials;
+
+    const apiFaqs = await getFaqsFromAPI('home');
+    if (apiFaqs && apiFaqs.length > 0) faqList = apiFaqs;
+
+    const apiSettings = await getSettingsFromAPI();
+    if (apiSettings && apiSettings.stats && apiSettings.stats.length > 0) {
+      statsList = apiSettings.stats;
+    }
+  } catch (err) {
+    // fallback
+  }
+
   return (
     <>
       <HomeHero />
@@ -63,7 +87,7 @@ export default function HomePage() {
       <section className="py-12 sm:py-16">
         <Container>
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-            {stats.map((s) => (
+            {statsList.map((s) => (
               <StatCard
                 key={s.label}
                 icon={statIcons[s.icon] ?? Users}
@@ -128,7 +152,7 @@ export default function HomePage() {
             description="Diploma and certificate programs designed around healthcare hiring needs in Bihar and beyond."
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {courses.map((course) => (
+            {courseList.map((course) => (
               <CourseCard key={course.slug} course={course} />
             ))}
           </div>
@@ -181,7 +205,7 @@ export default function HomePage() {
             description="Real stories from students who trained at ARPI and started their careers."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {testimonials.map((t) => (
+            {testimonialList.map((t) => (
               <TestimonialCard key={t.name} t={t} />
             ))}
           </div>
@@ -191,14 +215,14 @@ export default function HomePage() {
       {/* FAQ Section */}
       <section className="bg-muted/40 py-14 sm:py-20">
         <Container>
-          <FAQSchema items={homeFaqs} />
+          <FAQSchema items={faqList} />
           <SectionHeading
             eyebrow="Frequently Asked Questions"
             title="Everything You Need to Know"
             description="Clear answers to common questions about courses, eligibility, recognition, and campus life at ARPI Gaya."
           />
           <div className="mx-auto mt-10 max-w-3xl">
-            <FAQAccordion items={homeFaqs} />
+            <FAQAccordion items={faqList} />
           </div>
         </Container>
       </section>

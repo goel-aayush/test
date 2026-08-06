@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Container, Section, SectionHeading } from '@/components/container'
 import { PageHero } from '@/components/page-hero'
-import { facilities } from '@/lib/content'
+import { facilities as fallbackFacilities, Facility } from '@/lib/content'
+import { getFacilitiesFromAPI } from '@/lib/api'
 import { CtaButton } from '@/components/cta-button'
 
 export const metadata: Metadata = {
@@ -12,7 +13,13 @@ export const metadata: Metadata = {
   alternates: { canonical: '/facilities' },
 }
 
-export default function FacilitiesPage() {
+export default async function FacilitiesPage() {
+  let facilityList: Facility[] = fallbackFacilities;
+  try {
+    const apiFacilities = await getFacilitiesFromAPI();
+    if (apiFacilities && apiFacilities.length > 0) facilityList = apiFacilities;
+  } catch (err) {}
+
   return (
     <>
       <PageHero
@@ -30,7 +37,7 @@ export default function FacilitiesPage() {
           />
 
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {facilities.map((f) => (
+            {facilityList.map((f) => (
               <div key={f.title} className="group overflow-hidden rounded-xl border border-border bg-card shadow-xs transition-shadow hover:shadow-md">
                 <div className="relative aspect-16/10 w-full overflow-hidden bg-muted">
                   <Image

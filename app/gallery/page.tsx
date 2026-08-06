@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Container, Section, SectionHeading } from '@/components/container'
 import { PageHero } from '@/components/page-hero'
-import { gallery } from '@/lib/content'
+import { gallery as fallbackGallery } from '@/lib/content'
+import { getGalleryFromAPI } from '@/lib/api'
 
 export const metadata: Metadata = {
   title: 'Photo & Video Gallery',
@@ -11,7 +12,13 @@ export const metadata: Metadata = {
   alternates: { canonical: '/gallery' },
 }
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  let galleryList = fallbackGallery;
+  try {
+    const apiGallery = await getGalleryFromAPI();
+    if (apiGallery && apiGallery.length > 0) galleryList = apiGallery;
+  } catch (err) {}
+
   return (
     <>
       <PageHero
@@ -29,7 +36,7 @@ export default function GalleryPage() {
           />
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {gallery.map((item, index) => (
+            {galleryList.map((item, index) => (
               <div
                 key={index}
                 className="group relative aspect-4/3 overflow-hidden rounded-xl border border-border bg-muted shadow-xs transition-shadow hover:shadow-md"

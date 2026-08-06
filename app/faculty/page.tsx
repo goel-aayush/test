@@ -3,8 +3,9 @@ import Image from 'next/image'
 import { Container, Section } from '@/components/container'
 import { PageHero } from '@/components/page-hero'
 import { Tabs } from '@/components/tabs'
-import { faculty, nonTeaching } from '@/lib/content'
-import { UserCheck, GraduationCap, ShieldCheck } from 'lucide-react'
+import { faculty as fallbackFaculty, nonTeaching, Faculty } from '@/lib/content'
+import { getFacultyFromAPI } from '@/lib/api'
+import { UserCheck, GraduationCap } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Faculty & Support Staff',
@@ -13,14 +14,22 @@ export const metadata: Metadata = {
   alternates: { canonical: '/faculty' },
 }
 
-export default function FacultyPage() {
+export default async function FacultyPage() {
+  let facultyList: Faculty[] = fallbackFaculty;
+  try {
+    const apiFaculty = await getFacultyFromAPI();
+    if (apiFaculty && apiFaculty.length > 0) {
+      facultyList = apiFaculty;
+    }
+  } catch (err) {}
+
   const tabs = [
     {
       id: 'teaching',
       label: 'Teaching Faculty',
       content: (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {faculty.map((member) => (
+          {facultyList.map((member) => (
             <div key={member.name} className="overflow-hidden rounded-xl border border-border bg-card shadow-xs">
               <div className="relative aspect-4/3 w-full bg-muted">
                 <Image
