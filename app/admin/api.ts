@@ -1,6 +1,14 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://digmaniparamedical-backend.vercel.app/api/v1';
+let rawApiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://digmaniparamedical-backend.vercel.app/api/v1';
+if (rawApiUrl.endsWith('/')) {
+  rawApiUrl = rawApiUrl.slice(0, -1);
+}
+if (!rawApiUrl.endsWith('/api/v1')) {
+  rawApiUrl = `${rawApiUrl}/api/v1`;
+}
+const API_BASE_URL = rawApiUrl;
+
 
 const api = axios.create({
   baseURL: API_BASE_URL,
