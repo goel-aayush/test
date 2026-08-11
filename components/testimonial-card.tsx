@@ -1,5 +1,6 @@
-import Image from 'next/image'
 import { Quote, Star } from 'lucide-react'
+import { getBackendImageUrl } from '@/lib/utils'
+import { SafeImage } from '@/components/safe-image'
 
 export type Testimonial = {
   name: string
@@ -21,8 +22,8 @@ export function TestimonialCard({ t }: { t: Testimonial }) {
         &ldquo;{t.quote}&rdquo;
       </blockquote>
       <figcaption className="mt-5 flex items-center gap-3 border-t border-border pt-4">
-        <Image
-          src={t.image || '/placeholder.svg'}
+        <SafeImage
+          src={getBackendImageUrl(t.image)}
           alt={`${t.name}, ${t.course} student`}
           width={44}
           height={44}

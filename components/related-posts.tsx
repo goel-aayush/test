@@ -1,7 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import { CalendarDays, Clock, ArrowRight } from 'lucide-react'
 import type { BlogPost } from '@/lib/blog'
 import { formatPostDate } from '@/lib/blog'
+import { getBackendImageUrl } from '@/lib/utils'
 
 /**
  * Compact list of related blog posts. Used on course pages to surface blog
@@ -38,11 +41,14 @@ export function RelatedPosts({
             className="group flex gap-4 rounded-xl border border-border bg-card p-4 hover:border-primary/40 hover:shadow-sm"
           >
             <img
-              src={post.featuredImage || '/placeholder.svg'}
+              src={getBackendImageUrl(post.featuredImage)}
               alt=""
               width={160}
               height={112}
               loading="lazy"
+              onError={(e) => {
+                ;(e.target as HTMLImageElement).src = '/placeholder.svg'
+              }}
               className="size-20 shrink-0 rounded-lg object-cover"
             />
             <div className="min-w-0">

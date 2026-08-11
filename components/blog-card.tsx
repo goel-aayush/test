@@ -1,18 +1,24 @@
+'use client'
+
 import Link from 'next/link'
 import { CalendarDays, Clock, ArrowRight } from 'lucide-react'
 import type { BlogPost } from '@/lib/blog'
 import { formatPostDate } from '@/lib/blog'
+import { getBackendImageUrl } from '@/lib/utils'
 
 export function BlogCard({ post }: { post: BlogPost }) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-md">
       <Link href={`/blog/${post.slug}`} className="block overflow-hidden">
         <img
-          src={post.featuredImage || '/placeholder.svg'}
+          src={getBackendImageUrl(post.featuredImage)}
           alt={post.title}
           width={1200}
           height={630}
           loading="lazy"
+          onError={(e) => {
+            ;(e.target as HTMLImageElement).src = '/placeholder.svg'
+          }}
           className="aspect-[1200/630] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         />
       </Link>

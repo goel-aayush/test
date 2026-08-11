@@ -1,8 +1,9 @@
-import Image from 'next/image'
 import { Phone, ShieldCheck, MapPin, CheckCircle2 } from 'lucide-react'
 import { Container } from '@/components/container'
 import { CtaButton } from '@/components/cta-button'
 import { site, whatsappLink } from '@/lib/site'
+import { getBackendImageUrl } from '@/lib/utils'
+import { SafeImage } from '@/components/safe-image'
 
 const points = ['Government-aligned curriculum', 'Hands-on lab training', 'Placement assistance']
 
@@ -52,8 +53,8 @@ export function HomeHero() {
 
         <div className="relative">
           <div className="overflow-hidden rounded-2xl border border-white/15 shadow-2xl">
-            <Image
-              src="/images/hero-campus.png"
+            <SafeImage
+              src={getBackendImageUrl('/uploads/general/hero-campus.png')}
               alt="Paramedical students training in the ARPI medical laboratory"
               width={720}
               height={560}

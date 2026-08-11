@@ -40,6 +40,7 @@ export const nav = [
   { label: 'Courses', href: '/courses' },
   { label: 'Admission', href: '/admission' },
   { label: 'Academics', href: '/academics' },
+  { label: 'Notices', href: '/notices' },
   { label: 'Faculty', href: '/faculty' },
   { label: 'Facilities', href: '/facilities' },
   { label: 'Gallery', href: '/gallery' },

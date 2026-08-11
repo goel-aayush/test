@@ -2,10 +2,6 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
-import { SiteHeader } from '@/components/site-header'
-import { SiteFooter } from '@/components/site-footer'
-import { MobileCtaBar } from '@/components/mobile-cta-bar'
-import { OrganizationSchema } from '@/components/seo/organization-schema'
 import { ThemeProvider, themeScript } from '@/components/theme-provider'
 
 const inter = Inter({
@@ -91,11 +87,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased text-foreground bg-background">
         <ThemeProvider>
-          <OrganizationSchema />
-          <SiteHeader />
-          <main className="min-h-screen pb-16 md:pb-0">{children}</main>
-          <SiteFooter />
-          <MobileCtaBar />
+          {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </ThemeProvider>
       </body>

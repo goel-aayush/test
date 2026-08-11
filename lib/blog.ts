@@ -33,7 +33,7 @@ export type BlogPost = {
 }
 
 const AUTHOR_TEAM = 'ARPI Academic Team'
-const PHOTO_TEAM = '/blog/author-arpi-team.png'
+const PHOTO_TEAM = '/uploads/blog/author-arpi-team.png'
 
 type RawPost = Omit<BlogPost, 'readingTime'>
 
@@ -45,7 +45,7 @@ const rawPosts: RawPost[] = [
     author: AUTHOR_TEAM,
     authorPhoto: PHOTO_TEAM,
     publishDate: '2025-11-10',
-    featuredImage: '/blog/dmlt-salary-guide.png',
+    featuredImage: '/uploads/blog/dmlt-salary-guide.png',
     relatedCourseSlug: 'medical-lab-technician',
     excerpt:
       'An honest look at what a Diploma in Medical Lab Technician (DMLT) fresher earns in Bihar and across India — plus the factors that push your salary up.',
@@ -108,7 +108,7 @@ const rawPosts: RawPost[] = [
     author: AUTHOR_TEAM,
     authorPhoto: PHOTO_TEAM,
     publishDate: '2025-11-18',
-    featuredImage: '/blog/physiotherapy-career-scope.png',
+    featuredImage: '/uploads/blog/physiotherapy-career-scope.png',
     relatedCourseSlug: 'physiotherapy',
     excerpt:
       'Where a Diploma in Physiotherapy can take you in Bihar — the roles, the employers, the growth path, and why demand for rehabilitation support is rising.',
@@ -167,7 +167,7 @@ const rawPosts: RawPost[] = [
     author: AUTHOR_TEAM,
     authorPhoto: PHOTO_TEAM,
     publishDate: '2025-11-25',
-    featuredImage: '/blog/10th-vs-12th-paramedical.png',
+    featuredImage: '/uploads/blog/10th-vs-12th-paramedical.png',
     relatedCourseSlug: 'medical-dresser',
     excerpt:
       'Confused about which paramedical course fits your qualification? Here is a clear, honest guide to choosing the right course after 10th or 12th.',
@@ -233,7 +233,7 @@ const rawPosts: RawPost[] = [
     author: AUTHOR_TEAM,
     authorPhoto: PHOTO_TEAM,
     publishDate: '2025-12-02',
-    featuredImage: '/blog/govt-jobs-paramedical.png',
+    featuredImage: '/uploads/blog/govt-jobs-paramedical.png',
     relatedCourseSlug: 'health-sanitary-inspector',
     excerpt:
       'Government jobs remain a top goal for paramedical students. Here is where the opportunities are, who can apply, and how to prepare.',
@@ -298,7 +298,7 @@ const rawPosts: RawPost[] = [
     author: AUTHOR_TEAM,
     authorPhoto: PHOTO_TEAM,
     publishDate: '2025-12-08',
-    featuredImage: '/blog/success-priya-dmlt.png',
+    featuredImage: '/uploads/blog/success-priya-dmlt.png',
     relatedCourseSlug: 'medical-lab-technician',
     excerpt:
       'A student success story: how a DMLT graduate from Gaya built the practical skills and confidence to land a full-time lab technician role.',

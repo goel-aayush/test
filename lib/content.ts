@@ -6,21 +6,21 @@ export const testimonials: Testimonial[] = [
     course: 'Lab Technician (DMLT)',
     quote:
       'The lab practicals at ARPI gave me real confidence. I got a job at a diagnostic centre in Gaya within a month of finishing my course.',
-    image: '/images/student-1.png',
+    image: '/uploads/general/student-1.png',
   },
   {
     name: 'Rahul Kumar',
     course: 'X-Ray Technician',
     quote:
       'Teachers here explain everything patiently and the imaging equipment training was hands-on. Highly recommend for anyone from a small town like me.',
-    image: '/images/student-2.png',
+    image: '/uploads/general/student-2.png',
   },
   {
     name: 'Amit Ranjan',
     course: 'Health Sanitary Inspector',
     quote:
       'I was already working but wanted a recognised certificate. The flexible schedule and supportive faculty made it possible to upskill.',
-    image: '/images/student-3.png',
+    image: '/uploads/general/student-3.png',
   },
 ]
 
@@ -57,28 +57,28 @@ export const faculty: Faculty[] = [
     name: 'Dr. Alok Ranjan',
     role: 'Director',
     qualification: 'MBBS, MD — 20+ years in medical education',
-    image: '/images/faculty-director.png',
+    image: '/uploads/general/faculty-director.png',
     type: 'teaching',
   },
   {
     name: 'Mr. Sanjeev Kumar',
     role: 'Principal',
     qualification: 'M.Sc. Medical Lab Technology',
-    image: '/images/faculty-principal.png',
+    image: '/uploads/general/faculty-principal.png',
     type: 'teaching',
   },
   {
     name: 'Dr. Neha Sharma',
     role: 'HOD — Physiotherapy',
     qualification: 'BPT, MPT (Ortho)',
-    image: '/images/faculty-1.png',
+    image: '/uploads/general/faculty-1.png',
     type: 'teaching',
   },
   {
     name: 'Mr. Ravi Prakash',
     role: 'Lecturer — Radiology',
     qualification: 'B.Sc. Radiology & Imaging',
-    image: '/images/faculty-2.png',
+    image: '/uploads/general/faculty-2.png',
     type: 'teaching',
   },
 ]
@@ -101,49 +101,49 @@ export const facilities: Facility[] = [
     title: 'Modern Laboratories',
     description:
       'Well-equipped pathology, microbiology and radiology labs for hands-on training with real instruments.',
-    image: '/images/facility-lab.png',
+    image: '/uploads/general/facility-lab.png',
   },
   {
     title: 'Library & Study Hall',
     description:
       'A quiet, well-stocked library with medical reference books, journals and dedicated reading space.',
-    image: '/images/facility-library.png',
+    image: '/uploads/general/facility-library.png',
   },
   {
     title: 'Hostel Accommodation',
     description:
       'Safe, clean and affordable hostel facilities for outstation students with warden supervision.',
-    image: '/images/facility-hostel.png',
+    image: '/uploads/general/facility-hostel.png',
   },
   {
     title: 'Transport Facility',
     description:
       'Institute bus service covering major routes across Gaya for easy and safe daily commute.',
-    image: '/images/facility-transport.png',
+    image: '/uploads/general/facility-transport.png',
   },
   {
     title: 'Smart Classrooms',
     description:
       'Bright, spacious classrooms with charts and teaching aids for interactive learning.',
-    image: '/images/facility-classroom.png',
+    image: '/uploads/general/facility-classroom.png',
   },
   {
     title: 'Imaging & Practice Rooms',
     description:
       'Dedicated radiology and imaging practice rooms with a focus on radiation safety.',
-    image: '/images/gallery-xray.png',
+    image: '/uploads/general/gallery-xray.png',
   },
 ]
 
 export const gallery = [
-  { src: '/images/campus-building.png', alt: 'ARPI campus building exterior in Gaya' },
-  { src: '/images/facility-lab.png', alt: 'Students working in the medical laboratory' },
-  { src: '/images/students-group.png', alt: 'Group of ARPI paramedical students in uniform' },
-  { src: '/images/facility-library.png', alt: 'Institute library and reading hall' },
-  { src: '/images/facility-classroom.png', alt: 'Smart classroom at ARPI' },
-  { src: '/images/gallery-xray.png', alt: 'X-ray and radiology practice room' },
-  { src: '/images/facility-hostel.png', alt: 'Student hostel accommodation' },
-  { src: '/images/facility-transport.png', alt: 'Institute transport bus service' },
+  { src: '/uploads/general/campus-building.png', alt: 'ARPI campus building exterior in Gaya' },
+  { src: '/uploads/general/facility-lab.png', alt: 'Students working in the medical laboratory' },
+  { src: '/uploads/general/students-group.png', alt: 'Group of ARPI paramedical students in uniform' },
+  { src: '/uploads/general/facility-library.png', alt: 'Institute library and reading hall' },
+  { src: '/uploads/general/facility-classroom.png', alt: 'Smart classroom at ARPI' },
+  { src: '/uploads/general/gallery-xray.png', alt: 'X-ray and radiology practice room' },
+  { src: '/uploads/general/facility-hostel.png', alt: 'Student hostel accommodation' },
+  { src: '/uploads/general/facility-transport.png', alt: 'Institute transport bus service' },
 ]
 
 export const homeFaqs = [
