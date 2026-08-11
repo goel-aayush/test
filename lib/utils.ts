@@ -21,7 +21,7 @@ export function getBackendImageUrl(path: string | undefined | null): string {
     const match = cleanPath.match(/arpi_uploads\/([^/]+)\/([^/]+\.pdf)$/i)
     if (match) {
       const [, category, filename] = match
-      return `/api/v1/media/view/${category}/${filename}`
+      return `/media/view/${category}/${filename}`
     }
     return cleanPath
   }
