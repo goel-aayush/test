@@ -13,8 +13,6 @@ export function getBackendImageUrl(path: string | undefined | null): string {
   // Cloudinary blocks direct raw file access for free/untrusted accounts.
   // Route PDF files through the backend proxy: /api/v1/media/view/notices/filename.pdf
   if (cleanPath.startsWith('https://res.cloudinary.com') && cleanPath.toLowerCase().endsWith('.pdf')) {
-    // Extract category and filename from Cloudinary URL
-    // URL pattern: https://res.cloudinary.com/{cloud}/{type}/upload/{version}/arpi_uploads/{category}/{filename}.pdf
     const match = cleanPath.match(/arpi_uploads\/([^/]+)\/([^/]+\.pdf)$/i)
     if (match) {
       const [, category, filename] = match
@@ -45,6 +43,12 @@ export function getBackendImageUrl(path: string | undefined | null): string {
     return `${backendBase}${cleanPath}`
   }
 
+  // Static site images stored in frontend public/ folder
+  if (cleanPath.startsWith('/uploads/general/') || cleanPath.startsWith('/images/')) {
+    return cleanPath
+  }
+
+  // Dynamic backend uploads
   if (cleanPath.startsWith('/uploads/')) {
     return `${backendBase}${cleanPath}`
   }
