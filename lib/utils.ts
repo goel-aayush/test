@@ -11,22 +11,21 @@ export function getBackendImageUrl(path: string | undefined | null): string {
   let cleanPath = path
 
   // Cloudinary blocks direct raw file access for free/untrusted accounts.
-  // Route PDF files through the backend proxy: /api/v1/media/view/notices/filename.pdf
+  // Route PDF files through the backend proxy (Next.js rewrites handle proxying)
   if (cleanPath.startsWith('https://res.cloudinary.com') && cleanPath.toLowerCase().endsWith('.pdf')) {
     const match = cleanPath.match(/arpi_uploads\/([^/]+)\/([^/]+\.pdf)$/i)
     if (match) {
       const [, category, filename] = match
-      const backendBase = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'
-      return `${backendBase}/api/v1/media/view/${category}/${filename}`
+      return `/api/v1/media/view/${category}/${filename}`
     }
     return cleanPath
   }
 
-  // If path is full Cloudinary URL, return as-is
+  // Full Cloudinary URL — return as-is
   if (cleanPath.startsWith('https://res.cloudinary.com')) return cleanPath
 
+  // Strip backend base URL if present to get relative path
   const backendBase = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'
-
   if (cleanPath.startsWith(backendBase)) {
     cleanPath = cleanPath.replace(backendBase, '')
   }
@@ -35,25 +34,12 @@ export function getBackendImageUrl(path: string | undefined | null): string {
     cleanPath = '/' + cleanPath
   }
 
+  // External URLs — return as-is
   if (cleanPath.startsWith('http://') || cleanPath.startsWith('https://')) {
     return cleanPath
   }
 
-  if (cleanPath.startsWith('/api/v1/media/view/')) {
-    return `${backendBase}${cleanPath}`
-  }
-
-  // Static site images stored in frontend public/ folder
-  if (cleanPath.startsWith('/uploads/general/') || cleanPath.startsWith('/images/')) {
-    return cleanPath
-  }
-
-  // Dynamic backend uploads
-  if (cleanPath.startsWith('/uploads/')) {
-    return `${backendBase}${cleanPath}`
-  }
-
-  // Local static images from public folder
+  // /api/v1/... and /uploads/... — return relative, Next.js rewrites proxy to backend
   return cleanPath
 }
 
