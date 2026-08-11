@@ -10,6 +10,11 @@ export function getBackendImageUrl(path: string | undefined | null): string {
 
   let cleanPath = path
 
+  // Remove duplicate /api/v1/api/v1/ if present
+  if (cleanPath.startsWith('/api/v1/api/v1/')) {
+    cleanPath = cleanPath.replace('/api/v1/api/v1/', '/api/v1/')
+  }
+
   // Cloudinary blocks direct raw file access for free/untrusted accounts.
   // Route PDF files through the backend proxy (Next.js rewrites handle proxying)
   if (cleanPath.startsWith('https://res.cloudinary.com') && cleanPath.toLowerCase().endsWith('.pdf')) {
@@ -25,7 +30,10 @@ export function getBackendImageUrl(path: string | undefined | null): string {
   if (cleanPath.startsWith('https://res.cloudinary.com')) return cleanPath
 
   // Strip backend base URL if present to get relative path
-  const backendBase = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://digmaniparamedical-backend.vercel.app'
+  let backendBase = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://digmaniparamedical-backend.vercel.app'
+  if (backendBase.endsWith('/')) {
+    backendBase = backendBase.slice(0, -1)
+  }
   if (cleanPath.startsWith(backendBase)) {
     cleanPath = cleanPath.replace(backendBase, '')
   }

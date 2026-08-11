@@ -7,8 +7,16 @@ const nextConfig = {
     unoptimized: true,
   },
   async rewrites() {
-    const backendUrl =
+    let backendUrl =
       process.env.NEXT_PUBLIC_BACKEND_URL || 'https://digmaniparamedical-backend.vercel.app'
+    
+    if (backendUrl.endsWith('/')) {
+      backendUrl = backendUrl.slice(0, -1)
+    }
+    if (backendUrl.endsWith('/api/v1')) {
+      backendUrl = backendUrl.replace('/api/v1', '')
+    }
+
     return [
       {
         source: '/uploads/:path*',
