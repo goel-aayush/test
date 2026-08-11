@@ -3,7 +3,7 @@ import { BlogPost, getAllPosts, getPost } from './blog'
 import { testimonials, faculty, facilities, gallery, notices, Faculty, Facility, Notice } from './content'
 import type { Testimonial } from '@/components/testimonial-card'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://digmaniparamedical-backend.vercel.app/api/v1';
 
 export async function fetchFromAPI<T>(endpoint: string, fallbackData: T): Promise<T> {
   try {

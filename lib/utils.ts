@@ -25,7 +25,7 @@ export function getBackendImageUrl(path: string | undefined | null): string {
   if (cleanPath.startsWith('https://res.cloudinary.com')) return cleanPath
 
   // Strip backend base URL if present to get relative path
-  const backendBase = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'
+  const backendBase = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://digmaniparamedical-backend.vercel.app'
   if (cleanPath.startsWith(backendBase)) {
     cleanPath = cleanPath.replace(backendBase, '')
   }
