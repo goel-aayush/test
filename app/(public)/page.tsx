@@ -64,7 +64,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HomeHero />
+      <HomeHero settings={apiSettings} />
       <NoticesTicker />
 
       {/* Stats */}

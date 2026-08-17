@@ -49,7 +49,12 @@ const documents = [
   'Migration certificate (if applicable)',
 ]
 
-export default function AdmissionPage() {
+import { getSettingsFromAPI } from '@/lib/api'
+
+export default async function AdmissionPage() {
+  const settings = await getSettingsFromAPI()
+  const currentSite = settings || site
+
   return (
     <>
       <PageHero
@@ -137,10 +142,10 @@ export default function AdmissionPage() {
               <div className="mt-6 rounded-xl border border-border bg-card p-5">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Need help choosing a course? Call{' '}
-                  <a href={site.phoneHref} className="font-semibold text-primary hover:underline">
-                    {site.phone}
+                  <a href={currentSite.phoneHref} className="font-semibold text-primary hover:underline">
+                    {currentSite.phone}
                   </a>{' '}
-                  and speak to our admissions counsellor. {site.officeHours}.
+                  and speak to our admissions counsellor. {currentSite.officeHours}.
                 </p>
               </div>
             </div>

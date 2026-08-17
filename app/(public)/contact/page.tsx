@@ -3,6 +3,7 @@ import { Container, Section } from '@/components/container'
 import { PageHero } from '@/components/page-hero'
 import { EnquiryForm } from '@/components/enquiry-form'
 import { site } from '@/lib/site'
+import { getSettingsFromAPI } from '@/lib/api'
 import { MapPin, Phone, Mail, Clock, MessageSquare } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -12,11 +13,14 @@ export const metadata: Metadata = {
   alternates: { canonical: '/contact' },
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const settings = await getSettingsFromAPI()
+  const currentSite = settings || site
+
   return (
     <>
       <PageHero
-        title="Contact ARPI Gaya"
+        title={`Contact ${currentSite.shortName} Gaya`}
         description="Have questions about admissions, fees or courses? Get in touch with our admissions team today."
         crumbs={[{ label: 'Contact' }]}
       />
@@ -28,7 +32,7 @@ export default function ContactPage() {
               <span className="text-xs font-semibold tracking-wider text-primary uppercase">Get In Touch</span>
               <h2 className="mt-1 text-2xl font-bold text-foreground sm:text-3xl">We are here to help you</h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                Visit our campus in Gaya during working hours or connect with us via phone, email or WhatsApp.
+                Visit our campus in {currentSite.address.city} during working hours or connect with us via phone, email or WhatsApp.
               </p>
 
               <div className="mt-8 space-y-6">
@@ -39,7 +43,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-foreground">Campus Address</h3>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                      {site.address.line1}, {site.address.city}, {site.address.state} – {site.address.postalCode}
+                      {currentSite.addressFull}
                     </p>
                   </div>
                 </div>
@@ -51,8 +55,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-foreground">Admission Helpline</h3>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      <a href={site.phoneHref} className="font-medium text-primary hover:underline">
-                        {site.phone}
+                      <a href={currentSite.phoneHref} className="font-medium text-primary hover:underline">
+                        {currentSite.phone}
                       </a>
                     </p>
                   </div>
@@ -66,7 +70,7 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-foreground">WhatsApp Enquiry</h3>
                     <p className="mt-1 text-sm text-muted-foreground">
                       <a
-                        href={site.whatsappHref}
+                        href={currentSite.whatsappHref}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-medium text-emerald-600 hover:underline"
@@ -84,8 +88,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-foreground">Email</h3>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      <a href={`mailto:${site.email}`} className="font-medium text-primary hover:underline">
-                        {site.email}
+                      <a href={currentSite.emailHref} className="font-medium text-primary hover:underline">
+                        {currentSite.email}
                       </a>
                     </p>
                   </div>
@@ -97,7 +101,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">Office Hours</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{site.officeHours}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{currentSite.officeHours}</p>
                   </div>
                 </div>
               </div>
@@ -122,13 +126,13 @@ export default function ContactPage() {
             <div className="p-4 bg-muted border-b border-border">
               <h3 className="font-semibold text-foreground flex items-center gap-2">
                 <MapPin className="size-4 text-primary" />
-                Location Map – Gaya Campus
+                Location Map – {currentSite.address.city} Campus
               </h3>
             </div>
             <div className="h-96 w-full">
               <iframe
-                title="ARPI Gaya Location Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57962.24641662991!2d84.954625!3d24.795493!2m3!1f0!1f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f32a5789f31527%3A0x6b09be8b1a37c355!2sGaya%2C%20Bihar!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                title={`${currentSite.shortName} Location Map`}
+                src={currentSite.mapEmbed || 'https://www.google.com/maps?q=Gaya,Bihar&output=embed'}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

@@ -49,7 +49,12 @@ function MessageBlock({
   )
 }
 
-export default function AboutPage() {
+import { getSettingsFromAPI } from '@/lib/api'
+
+export default async function AboutPage() {
+  const settings = await getSettingsFromAPI()
+  const currentSite = settings || site
+
   const tabs = [
     {
       id: 'history',
@@ -58,7 +63,7 @@ export default function AboutPage() {
         <div className="grid items-center gap-8 md:grid-cols-2">
           <div className="space-y-4 leading-relaxed text-foreground/90">
             <p>
-              Alok Ranjan Paramedical Institute was established in {site.established} with a simple
+              {currentSite.name} was established in {currentSite.established} with a simple
               goal — to make quality paramedical education accessible to students in Gaya and the
               surrounding regions of Bihar.
             </p>

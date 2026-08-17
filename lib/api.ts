@@ -75,7 +75,10 @@ export async function getFacilitiesFromAPI(): Promise<Facility[]> {
   return fetchFromAPI<Facility[]>('/facilities', facilities);
 }
 
-export async function getSettingsFromAPI(): Promise<any> {
-  return fetchFromAPI<any>('/settings', null);
+import { SiteSettings, formatSiteSettings, defaultSite } from './site'
+
+export async function getSettingsFromAPI(): Promise<SiteSettings> {
+  const raw = await fetchFromAPI<any>('/settings', null);
+  return formatSiteSettings(raw);
 }
 

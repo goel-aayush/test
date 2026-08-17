@@ -83,6 +83,7 @@ export default function AdminCoursesPage() {
               <tr className="border-b border-slate-800 bg-slate-950 text-xs font-bold text-slate-400 uppercase tracking-wider">
                 <th className="px-6 py-3.5">Course Name</th>
                 <th className="px-6 py-3.5">Duration</th>
+                <th className="px-6 py-3.5">Fees</th>
                 <th className="px-6 py-3.5">Eligibility</th>
                 <th className="px-6 py-3.5 text-right">Actions</th>
               </tr>
@@ -90,7 +91,7 @@ export default function AdminCoursesPage() {
             <tbody className="divide-y divide-slate-800 text-sm text-slate-300">
               {courses.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-6 py-8 text-center text-slate-500 text-xs">
+                  <td colSpan={5} className="px-6 py-8 text-center text-slate-500 text-xs">
                     No courses found.
                   </td>
                 </tr>
@@ -99,6 +100,7 @@ export default function AdminCoursesPage() {
                   <tr key={course._id} className="hover:bg-slate-800/50 transition">
                     <td className="px-6 py-4 font-semibold text-white max-w-xs">{course.name}</td>
                     <td className="px-6 py-4 text-xs text-sky-400 font-medium">{course.duration}</td>
+                    <td className="px-6 py-4 text-xs text-emerald-400 font-medium">{course.fee || 'Contact for fee details'}</td>
                     <td className="px-6 py-4 text-xs text-slate-400 max-w-xs truncate">{course.eligibility}</td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">

@@ -1,27 +1,28 @@
-import { site } from '@/lib/site'
+import { site, type SiteSettings } from '@/lib/site'
 
-export function OrganizationSchema() {
+export function OrganizationSchema({ settings }: { settings?: SiteSettings }) {
+  const currentSite = settings || site
   const data = {
     '@context': 'https://schema.org',
     '@type': ['EducationalOrganization', 'LocalBusiness'],
-    name: site.name,
-    alternateName: site.shortName,
+    name: currentSite.name,
+    alternateName: currentSite.shortName,
     url: 'https://alokranjanparamedicalinstitute.in',
-    telephone: site.phone,
-    email: site.email,
-    foundingDate: site.established,
+    telephone: currentSite.phone,
+    email: currentSite.email,
+    foundingDate: currentSite.established,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: site.address.line1,
-      addressLocality: site.address.city,
-      addressRegion: site.address.state,
-      postalCode: site.address.postalCode,
-      addressCountry: site.address.country,
+      streetAddress: currentSite.address.line1,
+      addressLocality: currentSite.address.city,
+      addressRegion: currentSite.address.state,
+      postalCode: currentSite.address.postalCode,
+      addressCountry: currentSite.address.country || 'IN',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: site.geo.lat,
-      longitude: site.geo.lng,
+      latitude: currentSite.geo?.lat || 24.7955,
+      longitude: currentSite.geo?.lng || 85.0002,
     },
     openingHours: 'Mo-Sa 09:00-18:00',
     areaServed: 'Gaya, Bihar',

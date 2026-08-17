@@ -6,11 +6,12 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { Menu, X, Phone, MessageCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { site, nav, whatsappLink } from '@/lib/site'
+import { site, nav, whatsappLink, type SiteSettings } from '@/lib/site'
 import { Container } from '@/components/container'
 import { ThemeToggle } from '@/components/theme-toggle'
 
-export function SiteHeader() {
+export function SiteHeader({ settings }: { settings?: SiteSettings }) {
+  const currentSite = settings || site
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
@@ -22,19 +23,19 @@ export function SiteHeader() {
       {/* Top utility bar */}
       <div className="hidden bg-brand-dark text-white md:block">
         <Container className="flex h-9 items-center justify-between text-xs">
-          <p className="opacity-90">{site.addressFull}</p>
+          <p className="opacity-90">{currentSite.addressFull}</p>
           <div className="flex items-center gap-4">
-            <a href={site.phoneHref} className="flex items-center gap-1.5 hover:opacity-80">
+            <a href={currentSite.phoneHref} className="flex items-center gap-1.5 hover:opacity-80">
               <Phone className="size-3.5" aria-hidden="true" />
-              {site.phone}
+              {currentSite.phone}
             </a>
-            <span className="opacity-90">{site.officeHours}</span>
+            <span className="opacity-90">{currentSite.officeHours}</span>
           </div>
         </Container>
       </div>
 
       <Container className="max-w-[1400px] flex h-16 items-center justify-between gap-2">
-        <Link href="/" className="flex items-center gap-3 shrink-0 py-1" aria-label={`${site.name} home`}>
+        <Link href="/" className="flex items-center gap-3 shrink-0 py-1" aria-label={`${currentSite.name} home`}>
           <Image
             src="/icon.svg"
             alt="Alok Ranjan Paramedical Institute Logo"
@@ -51,7 +52,7 @@ export function SiteHeader() {
               Paramedical Institute
             </span>
             <span className="block text-[10px] font-semibold text-[#C0392B] dark:text-[#F87171] whitespace-nowrap">
-              {site.unit}
+              {currentSite.unit}
             </span>
           </div>
         </Link>
@@ -76,7 +77,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <a
-            href={whatsappLink(`Hi ${site.shortName}, I want to know about admissions.`)}
+            href={whatsappLink(`Hi ${currentSite.shortName}, I want to know about admissions.`, currentSite)}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden items-center gap-1.5 whitespace-nowrap rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-95 sm:inline-flex"

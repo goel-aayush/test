@@ -91,7 +91,7 @@ export default function CreateCoursePage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
             <label className="block text-xs font-semibold text-slate-400 mb-1">Duration</label>
             <input
@@ -110,6 +110,16 @@ export default function CreateCoursePage() {
               className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500"
               value={eligibility}
               onChange={(e) => setEligibility(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-400 mb-1">Fee / Fee Structure</label>
+            <input
+              type="text"
+              className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500"
+              placeholder="e.g. ₹45,000 / Year or Contact for fee details"
+              value={fee}
+              onChange={(e) => setFee(e.target.value)}
             />
           </div>
           <div>

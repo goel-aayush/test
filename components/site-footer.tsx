@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Phone, MessageCircle, Mail, MapPin } from 'lucide-react'
-import { site, nav, whatsappLink } from '@/lib/site'
+import { site, nav, whatsappLink, type SiteSettings } from '@/lib/site'
 import { courses } from '@/lib/courses'
 import { Container } from '@/components/container'
 
-export function SiteFooter() {
+export function SiteFooter({ settings }: { settings?: SiteSettings }) {
+  const currentSite = settings || site
+
   return (
     <footer className="border-t border-border bg-brand-dark text-white">
       {/* CTA band */}
@@ -21,13 +23,13 @@ export function SiteFooter() {
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
-              href={site.phoneHref}
+              href={currentSite.phoneHref}
               className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-primary hover:bg-white/90"
             >
               <Phone className="size-4" aria-hidden="true" /> Call Now
             </a>
             <a
-              href={whatsappLink(`Hi ${site.shortName}, I want admission details.`)}
+              href={whatsappLink(`Hi ${currentSite.shortName}, I want admission details.`, currentSite)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground hover:brightness-95"
@@ -51,12 +53,12 @@ export function SiteFooter() {
             <div className="leading-tight">
               <span className="block text-base font-extrabold text-white">Alok Ranjan</span>
               <span className="block text-xs font-bold text-accent">Paramedical Institute</span>
-              <span className="block text-[10px] font-semibold text-white/80">{site.unit}</span>
+              <span className="block text-[10px] font-semibold text-white/80">{currentSite.unit}</span>
             </div>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/75">
-            {site.name} — training the next generation of paramedical professionals in Gaya, Bihar.
-            Established {site.established}.
+            {currentSite.name} — training the next generation of paramedical professionals in Gaya, Bihar.
+            Established {currentSite.established}.
           </p>
         </div>
 
@@ -91,18 +93,18 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-3 text-sm text-white/75">
             <li className="flex items-start gap-2.5">
               <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-              <span>{site.addressFull}</span>
+              <span>{currentSite.addressFull}</span>
             </li>
             <li>
-              <a href={site.phoneHref} className="flex items-center gap-2.5 hover:text-white">
+              <a href={currentSite.phoneHref} className="flex items-center gap-2.5 hover:text-white">
                 <Phone className="size-4 shrink-0" aria-hidden="true" />
-                {site.phone}
+                {currentSite.phone}
               </a>
             </li>
             <li>
-              <a href={site.emailHref} className="flex items-center gap-2.5 hover:text-white">
+              <a href={currentSite.emailHref} className="flex items-center gap-2.5 hover:text-white">
                 <Mail className="size-4 shrink-0" aria-hidden="true" />
-                <span className="break-all">{site.email}</span>
+                <span className="break-all">{currentSite.email}</span>
               </a>
             </li>
           </ul>
@@ -112,7 +114,7 @@ export function SiteFooter() {
       <div className="border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/60 sm:flex-row">
           <p>
-            &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {currentSite.name}. All rights reserved.
           </p>
           <p>NAAC-aligned curriculum &middot; Gaya, Bihar</p>
         </Container>
